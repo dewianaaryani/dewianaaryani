@@ -48,6 +48,7 @@ model User {
   name          String?
   email         String?   @unique
   password      String?
+  role          Role      @default(visitor)
   emailVerified DateTime? @map("email_verified")
   image         String?
   accounts      Account[]
@@ -63,4 +64,9 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+enum Role {
+  owner
+  visitor
 }

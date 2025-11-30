@@ -20,6 +20,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { useForm } from "react-hook-form";
 import { SignUpSchema } from "@/lib/schemaZod";
 import z from "zod";
+import { signIn } from "next-auth/react";
 
 export default function SignUpWithCredentials({
   onSuccess,
@@ -59,18 +60,17 @@ export default function SignUpWithCredentials({
         setLoading(false);
         return;
       }
+      console.log(values);
 
       // 2️⃣ AUTO LOGIN
-      const loginRes = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password,
-        }),
+      const loginRes = await signIn("credentials", {
+        redirect: false,
+        email: values.email,
+        password: values.password,
       });
+      console.log(loginRes);
 
-      if (!loginRes.ok) {
+      if (!loginRes?.ok) {
         setServerError("Login failed, but account was created.");
         setLoading(false);
         return;
@@ -235,6 +235,7 @@ export default function SignUpWithCredentials({
         icon={<IoLogoGoogle />}
         position="left"
         fullWidth={true}
+        handleClick={() => signIn("google")}
       />
     </div>
   );
