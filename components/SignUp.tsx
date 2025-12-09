@@ -18,6 +18,7 @@ import { TextGenerateTwoEffect } from "./ui/TextGenerateTwoEffect";
 import { useRouter } from "next/navigation";
 import SignUpWithCredentials from "./SignUpWithCredential";
 import Lottie from "lottie-react";
+import { signIn } from "next-auth/react";
 
 export default function SignUp() {
   const router = useRouter();
@@ -61,40 +62,19 @@ export default function SignUp() {
         <div className="max-w-[89vw] md:max-w-[60vw] lg:max-w-[80vw] flex flex-col items-center justify-center w-full">
           <TextGenerateTwoEffect
             className="text-center text-[40px] md:text-5xl lg:text-5xl"
-            words="Sign Up"
+            words="Sign In"
           />
-          <p className="text-center md:tracking-wider mb-8 text-sm md:text-md lg:text-lg">
-            Let’s connect — I’d love to hear your thoughts
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-md lg:text-lg">
+            Let’s connect — I’d love to hear your thoughts!
           </p>
           <div className="grid w-full max-w-sm gap-6">
-            {withCredentials ? (
-              <SignUpWithCredentials />
-            ) : (
-              <>
-                <MagicButton
-                  title="Sign Up with Google"
-                  icon={<IoLogoGoogle />}
-                  position="left"
-                  fullWidth={true}
-                />
-                <MagicButton
-                  title="Sign Up with Credentials"
-                  icon={<IoPersonOutline />}
-                  position="left"
-                  fullWidth={true}
-                  handleClick={() => setWithCredentials(true)}
-                />
-              </>
-            )}
-            {/* <div className="text-center text-xs md:text-sm lg:text-md text-white-200">
-              Already have an account?{" "}
-              <span
-                className="text-purple font-semibold cursor-pointer underline"
-                onClick={() => navigateToSignIn()}
-              >
-                Log In
-              </span>
-            </div> */}
+            <MagicButton
+              title="Sign In with Google"
+              icon={<IoLogoGoogle />}
+              position="left"
+              fullWidth={true}
+              handleClick={() => signIn("google")}
+            />
           </div>
         </div>
       </div>

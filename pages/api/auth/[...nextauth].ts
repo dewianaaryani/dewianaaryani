@@ -32,7 +32,7 @@ export default NextAuth({
         const isValid = await compare(credentials.password, user.password);
         if (!isValid) return null;
 
-        return { id: user.id, name: user.name, email: user.email };
+        return user;
       }
     }),
   ],
@@ -42,5 +42,14 @@ export default NextAuth({
   },
   session: {
     strategy: "database",
+  },
+  callbacks: {
+      async signIn({ user, account, profile, email, credentials }) {
+    return true
+  },
+  async session({ session, token, user }) {
+    return session
+  
   }
+}
 });

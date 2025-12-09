@@ -44,15 +44,19 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?       @unique
   password      String?
-  role          Role      @default(visitor)
-  emailVerified DateTime? @map("email_verified")
+  role          Role          @default(visitor)
+  emailVerified DateTime?     @map("email_verified")
   image         String?
+  company       String?
+  jobTitle      String?
+  knowMeFrom    String?
   accounts      Account[]
   sessions      Session[]
+  testimonials  Testimonial[]
 
   @@map("users")
 }
@@ -69,4 +73,94 @@ model VerificationToken {
 enum Role {
   owner
   visitor
+}
+
+model Project {
+  id             String        @id @default(cuid())
+  name           String
+  description    String
+  thumbnail      String
+  image1         String
+  image2         String
+  image3         String
+  githubRepoLink String?
+  liveDemoLink   String?
+  iconLists      String[]
+  selected       Boolean       @default(false)
+  createdAt      DateTime      @default(now()) @map("created_at")
+  updatedAt      DateTime      @updatedAt @map("updated_at")
+  testimonials   Testimonial[]
+}
+
+model Article {
+  id        String   @id @default(cuid())
+  title     String
+  content   String   @db.Text
+  image     String[]
+  published Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model Testimonial {
+  id        String  @id @default(cuid())
+  userId    String  @map("user_id")
+  quote     String
+  projectId String? @map("project_id")
+
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model GridItems {
+  id             String   @id @default(cuid())
+  title          String
+  description    String?
+  className      String?
+  imgClassName   String?
+  titleClassName String?
+  img            String?
+  spareImg       String?
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+}
+
+model Education {
+  id        String    @id @default(cuid())
+  name      String
+  degree    String
+  field     String
+  startDate DateTime
+  endDate   DateTime?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+}
+
+model Certificate {
+  id         String    @id @default(cuid())
+  name       String
+  issuer     String
+  issueDate  DateTime?
+  validity   Validity
+  expireDate DateTime?
+  image      String?
+  url        String?
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+}
+
+enum Validity {
+  lifetime
+  limited
+}
+
+model DashboardSelection {
+  id        String   @id @default(cuid())
+  name      String
+  selected  Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }

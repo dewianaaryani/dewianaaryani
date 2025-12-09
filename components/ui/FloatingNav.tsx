@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, JSX } from "react";
 import {
   motion,
   AnimatePresence,
@@ -8,6 +8,9 @@ import {
 } from "framer-motion";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
+import MagicButton from "./MagicButton";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { IoLogoGoogle } from "react-icons/io5";
 
 export const FloatingNav = ({
   navItems,
@@ -20,6 +23,17 @@ export const FloatingNav = ({
   }[];
   className?: string;
 }) => {
+  const { data: session } = useSession();
+
+  const handleClick = () => {
+    if (session) {
+      // user already login → logout
+      signOut();
+    } else {
+      // user not login → login with google
+      signIn("google");
+    }
+  };
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(false);
@@ -56,7 +70,7 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "flex max-w-fit  fixed top-10 inset-x-0 mx-auto border  rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-10 py-5  items-center justify-center space-x-4 border-white/[0.2] bg-black-100", 
+          "flex max-w-fit  fixed top-10 inset-x-0 mx-auto border  rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-5000 px-10 py-5  items-center justify-center space-x-4 border-white/20 bg-black-100",
           className
         )}
       >
@@ -69,9 +83,17 @@ export const FloatingNav = ({
             )}
           >
             <span className="block sm:hidden">{navItem.icon}</span>
-            <span className="text-sm !cursor-pointer">{navItem.name}</span>
+            <span className="text-sm cursor-pointer!">{navItem.name}</span>
           </Link>
         ))}
+        {/* button login or logout */}
+        <MagicButton
+          title={session ? "Sign Out" : "Sign Up with Google"}
+          icon={<IoLogoGoogle />}
+          position="left"
+          fullWidth={true}
+          handleClick={handleClick}
+        />
         {/* <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
           <span>Login</span>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
