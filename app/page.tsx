@@ -8,22 +8,15 @@ import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/app/data";
 import Image from "next/image";
-import { prisma } from "@/lib/prisma";
-import { getSignedUrl } from "@/lib/getSignedUrl";
+import TestingImage from "@/components/TestingImage";
 
 export default async function Home() {
-  const url = await getSignedUrl();
-
   return (
     <main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip">
       <div className="max-w-7xl w-full">
         <FloatingNav navItems={navItems} />
+
         <Hero />
-        {url ? (
-          <Image src={url} alt="b1" width={800} height={800} />
-        ) : (
-          <p>Gagal mendapatkan URL</p>
-        )}
         <Grid />
         <RecentProjects />
         <Clients />
