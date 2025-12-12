@@ -138,3 +138,9 @@
     background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
   }
   
+.item-theme {
+  @apply bg-white text-black cursor-pointer
+}
+.item-theme-secondary {
+   @apply bg-black-300 text-white cursor-pointer
+}
