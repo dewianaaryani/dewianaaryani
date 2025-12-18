@@ -1,7 +1,9 @@
 "use client";
 import { projects } from "@/app/data";
 import { PinContainer } from "@/components/ui/3d-pin";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   InputGroup,
   InputGroupAddon,
@@ -9,14 +11,20 @@ import {
 } from "@/components/ui/input-group";
 import { Label } from "@/components/ui/label";
 import MagicButton from "@/components/ui/MagicButton";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { Switch } from "@/components/ui/switch";
 import { TextGenerateTwoEffect } from "@/components/ui/TextGenerateTwoEffect";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { PlusIcon, Search } from "lucide-react";
+import { PlusIcon, Search, Settings2 } from "lucide-react";
 
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaLocationArrow } from "react-icons/fa";
 const projectss = Array(4).fill({
@@ -68,14 +76,16 @@ export default function page() {
                     <Search />
                   </InputGroupAddon>
                 </InputGroup>
-                <Button
-                  size="icon-lg"
-                  aria-label="Submit"
-                  variant="outline"
-                  className="border-black-300"
-                >
-                  <PlusIcon />
-                </Button>
+                <Link href="/owner/projects/add">
+                  <Button
+                    size="icon-lg"
+                    aria-label="Submit"
+                    variant="outline"
+                    className="border-black-300 cursor-pointer"
+                  >
+                    <PlusIcon />
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
@@ -96,17 +106,21 @@ export default function page() {
 
                     {/* Icons inside bottom-right */}
                     <div className="absolute bottom-3 right-0.5 flex items-center">
-                      {item.iconLists.map((icon, index) => (
-                        <div
-                          key={icon}
-                          className="border border-white/20 rounded-full bg-black/60 backdrop-blur-sm lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
-                          style={{
-                            transform: `translateX(-${index * 10}px)`,
-                          }}
-                        >
-                          <img src={icon} alt={icon} className="p-2" />
-                        </div>
-                      ))}
+                      <div className="flex items-center -space-x-3 hover:space-x-0 transition-all">
+                        {item.iconLists.map((icon, index) => (
+                          <Avatar
+                            key={index}
+                            className="bg-[#0b0f1a] ring-2 ring-background shadow-md"
+                          >
+                            <AvatarImage
+                              src={icon}
+                              alt={icon}
+                              className="p-2 object-contain"
+                            />
+                            <AvatarFallback className="bg-[#0b0f1a]" />
+                          </Avatar>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
@@ -125,10 +139,12 @@ export default function page() {
 
                   {/* Configure + Switch */}
                   <div className="flex items-center justify-between">
-                    <div className="text-white/80 font-medium">
-                      Configure Project
-                    </div>
-
+                    <Link href={`/projects/${item.id}`}>
+                      <div className="text-white/80 text-sm underline flex gap-2">
+                        <Settings2 size={20} />
+                        Configure Project
+                      </div>
+                    </Link>
                     <div className="flex items-center space-x-2">
                       <Switch id={`switch-${index}`} />
                       <Label
@@ -137,55 +153,6 @@ export default function page() {
                       >
                         Enabled
                       </Label>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className=" flex flex-wrap items-center justify-center p-4 gap-x-18 gap-y-4">
-              {projects.map(({ id, title, des, img, iconLists, link }) => (
-                <div
-                  key={id}
-                  className="lg:min-h-130 h-100 flex items-center justify-center sm:w-[570px] w-[80vw]"
-                >
-                  <div className="">
-                    <div className="relative flex items-center justify-center sm:w-[500px] w-[80vw] overflow-hidden sm:h-[35vh] h-[30vh]  mb-10">
-                      <div className="relative w-full h-full overflow-hidden lg:rounded-3xl bg-[#13162d]">
-                        <img src="/bg.png" alt="bg-img" />
-                      </div>
-                      <img
-                        src={img}
-                        alt={title}
-                        className="z-10 absolute bottom-0"
-                      />
-                    </div>
-                    <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
-                      {title}
-                    </h1>
-                    <p className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2">
-                      {des}
-                    </p>
-                    <div className="flex items-center justify-between mt-7 mb-3">
-                      <div className="flex items-center">
-                        {iconLists.map((icon, index) => (
-                          <div
-                            key={icon}
-                            className="border border-white/20 rounded-full bg-black lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
-                            style={{
-                              transform: `translateX(-${5 * index * 2}px)`,
-                            }}
-                          >
-                            <img src={icon} alt={icon} className="p-2" />
-                          </div>
-                        ))}
-                      </div>
-                      <div className="flex justify-center items-center">
-                        <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                          Check Live Site
-                        </p>
-                        <FaLocationArrow className="ms-3" color="#CBACF9" />
-                      </div>
                     </div>
                   </div>
                 </div>
