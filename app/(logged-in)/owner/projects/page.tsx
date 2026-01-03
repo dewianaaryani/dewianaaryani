@@ -107,7 +107,7 @@ export default function page() {
                     {/* Icons inside bottom-right */}
                     <div className="absolute bottom-3 right-0.5 flex items-center">
                       <div className="flex items-center -space-x-3 hover:space-x-0 transition-all">
-                        {item.iconLists.map((icon, index) => (
+                        {item.iconLists.map((icon: string, index: number) => (
                           <Avatar
                             key={index}
                             className="bg-[#0b0f1a] ring-2 ring-background shadow-md"
