@@ -74,7 +74,7 @@ export const FloatingNav = ({
             </span>
           </Link>
         ))}
-        <Link
+        {/* <Link
           href={session ? "/visitors" : "/sign-in"}
           className="relative dark:text-neutral-50 flex items-center space-x-1 
                      text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
@@ -85,7 +85,7 @@ export const FloatingNav = ({
           <span className="text-sm cursor-pointer hidden sm:block">
             {session ? "My Account" : "Sign In"}
           </span>
-        </Link>
+        </Link> */}
       </motion.div>
     </AnimatePresence>
   );

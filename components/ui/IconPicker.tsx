@@ -61,7 +61,10 @@ export function IconPicker({ value = [], onChange }: IconPickerProps) {
         <Button variant="outline">Select Icons ({value.length})</Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-lg">
+      <DialogContent
+        className="max-w-lg rounded-2xl border border-white/10 backdrop-blur-xl bg-linear-to-b from-[#0f0f1b] via-[#0c0c18]/90 to-[#1a1a2e]/80
+  shadow-[0_0_40px_rgba(0,0,0,0.6)]"
+      >
         <DialogTitle>Select Icons</DialogTitle>
 
         {icons.length === 0 && (
@@ -82,16 +85,17 @@ export function IconPicker({ value = [], onChange }: IconPickerProps) {
                 )
               }
               className={cn(
-                "rounded-md border p-2",
-                value.includes(icon)
-                  ? "border-primary bg-white"
-                  : "border-border"
+                "rounded-xl p-3 transition-all duration-300 flex items-center justify-center",
+                "bg-white/5 backdrop-blur-sm border border-white/10",
+                "hover:bg-white/10 hover:border-white/20 hover:scale-[1.03]",
+                value.includes(icon) &&
+                  "bg-white/10 border border-blue-400/60 shadow-[0_0_10px_rgba(0,149,255,0.3)]"
               )}
             >
               <img
                 src={getIconUrl(icon)}
                 alt={icon}
-                className="h-6 w-6 mx-auto"
+                className="h-7 w-7 opacity-90"
                 onError={() => console.error("FAILED TO LOAD ICON:", icon)}
               />
             </button>

@@ -34,7 +34,6 @@ export default function FormAddProject() {
     image3?: string;
   }>({});
   const [iconList, setIconList] = useState<string[]>([]);
-  const [iconInput, setIconInput] = useState("");
 
   const form = useForm<z.infer<typeof ProjectFormSchema>>({
     resolver: zodResolver(ProjectFormSchema),
@@ -79,50 +78,40 @@ export default function FormAddProject() {
     }));
     form.setValue(fieldName, "");
   };
-
-  const addIcon = () => {
-    if (iconInput.trim()) {
-      const newIconList = [...iconList, iconInput.trim()];
-      setIconList(newIconList);
-      form.setValue("iconLists", newIconList);
-      setIconInput("");
-    }
-  };
-
-  const removeIcon = (index: number) => {
-    const newIconList = iconList.filter((_, i) => i !== index);
-    setIconList(newIconList);
-    form.setValue("iconLists", newIconList);
-  };
-
   const onSubmit = async (values: z.infer<typeof ProjectFormSchema>) => {
     setLoading(true);
     setServerError(null);
 
-    try {
-      const res = await fetch("/api/projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+    const formData = new FormData();
 
-      const data = await res.json();
-      if (!res.ok) {
-        setServerError(data.error || "Something went wrong");
-        setLoading(false);
-        return;
+    Object.keys(values).forEach((key) => {
+      // Skip karena file akan dipisah
+      if (!["thumbnail", "image1", "image2", "image3"].includes(key)) {
+        formData.append(key, (values as any)[key]);
       }
+    });
 
-      console.log("Project created:", values);
-      form.reset();
-      setImagePreviews({});
-      setIconList([]);
-    } catch (err) {
-      setServerError("Server error, try again later.");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    // Tambah file langsung (ambil dari input)
+    const fieldsWithFile = ["thumbnail", "image1", "image2", "image3"] as const;
+    fieldsWithFile.forEach((field) => {
+      const fileInput = document.getElementById(field) as HTMLInputElement;
+      if (fileInput?.files?.[0]) {
+        formData.append(field, fileInput.files[0]);
+      }
+    });
+
+    const res = await fetch("/api/projects", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    if (!res.ok) return setServerError(data.error);
+
+    form.reset();
+    setImagePreviews({});
+    setIconList([]);
+    setLoading(false);
   };
 
   return (
@@ -191,7 +180,8 @@ export default function FormAddProject() {
                         {field.value?.map((icon: string) => (
                           <div
                             key={icon}
-                            className="flex items-center gap-1 rounded-md border px-2 py-1"
+                            className="flex items-center gap-1 rounded-md  px-2 py-1  border border-white/10 backdrop-blur-xl bg-linear-to-b from-[#0f0f1b] via-[#0c0c18]/90 to-[#1a1a2e]/80
+  shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                           >
                             <img
                               src={
@@ -273,6 +263,7 @@ export default function FormAddProject() {
                     <FormControl>
                       <div className="space-y-2">
                         <Input
+                          id="thumbnail"
                           type="file"
                           accept="image/*"
                           onChange={(e) => handleImageUpload(e, "thumbnail")}
@@ -318,6 +309,7 @@ export default function FormAddProject() {
                         <FormControl>
                           <div className="space-y-2">
                             <Input
+                              id={imageName}
                               type="file"
                               accept="image/*"
                               onChange={(e) => handleImageUpload(e, imageName)}

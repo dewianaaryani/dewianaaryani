@@ -19,9 +19,9 @@ export default async function Home() {
         <Hero />
         <Grid />
         <RecentProjects />
-        <Clients />
+        {/* <Clients /> */}
         <Experience />
-        <Approach />
+        {/* <Approach /> */}
         <Footer />
       </div>
     </main>
