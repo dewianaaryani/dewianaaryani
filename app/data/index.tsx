@@ -12,6 +12,82 @@ export type NavItem = {
   icon?: JSX.Element;
 };
 
+export const workExperiences = [
+  {
+    id: 1,
+    role: "Senior Frontend Developer",
+    company: "Tech Corp",
+    period: "2022 - Present",
+    description:
+      "Led development of modern web applications using React and Next.js",
+    skills: ["React", "Next.js", "TypeScript", "Tailwind"],
+    location: "Remote",
+  },
+  {
+    id: 2,
+    role: "Full Stack Developer",
+    company: "Digital Agency",
+    period: "2020 - 2022",
+    description: "Built scalable web solutions for various clients",
+    skills: ["Node.js", "React", "MongoDB", "AWS"],
+    location: "Jakarta, ID",
+  },
+];
+
+export const organizations = [
+  {
+    id: 1,
+    role: "Tech Lead",
+    organization: "Developer Community",
+    period: "2021 - Present",
+    description: "Organized workshops and mentored junior developers",
+    impact: "500+ members",
+  },
+  {
+    id: 2,
+    role: "Committee Member",
+    organization: "Open Source Initiative",
+    period: "2020 - 2021",
+    description: "Contributed to open source projects and community growth",
+    impact: "1000+ contributors",
+  },
+];
+
+export const certificates = [
+  {
+    id: 1,
+    name: "AWS Certified Solutions Architect",
+    issuer: "Amazon Web Services",
+    date: "2023",
+    credentialId: "AWS-12345",
+    color: "from-orange-500/20 to-yellow-500/20",
+  },
+  {
+    id: 2,
+    name: "Professional Scrum Master",
+    issuer: "Scrum.org",
+    date: "2022",
+    credentialId: "PSM-67890",
+    color: "from-blue-500/20 to-cyan-500/20",
+  },
+  {
+    id: 3,
+    name: "React Advanced Certification",
+    issuer: "Meta",
+    date: "2023",
+    credentialId: "META-11223",
+    color: "from-cyan-500/20 to-blue-500/20",
+  },
+  {
+    id: 4,
+    name: "Google UX Design Certificate",
+    issuer: "Google",
+    date: "2023",
+    credentialId: "GOOGLE-44556",
+    color: "from-green-500/20 to-emerald-500/20",
+  },
+];
+
 export const navItems: NavItem[] = [
   { name: "About", link: "#about", icon: <FaUser /> },
   { name: "Projects", link: "#projects", icon: <FaProjectDiagram /> },

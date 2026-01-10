@@ -9,6 +9,9 @@ import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/app/data";
 import Image from "next/image";
 import TestingImage from "@/components/TestingImage";
+import WorkExperience from "@/components/WorkExperience";
+import OrganizationExperience from "@/components/OrganizationExperience";
+import Certificates from "@/components/Certificates";
 
 export default async function Home() {
   return (
@@ -20,7 +23,11 @@ export default async function Home() {
         <Grid />
         <RecentProjects />
         {/* <Clients /> */}
+        <WorkExperience />
+        <OrganizationExperience />
+        <Certificates />
         <Experience />
+
         {/* <Approach /> */}
         <Footer />
       </div>
