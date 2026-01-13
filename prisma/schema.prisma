@@ -80,9 +80,9 @@ model Project {
   name           String
   description    String
   thumbnail      String
-  image1         String
-  image2         String
-  image3         String
+  image1         String?
+  image2         String?
+  image3         String?
   githubRepoLink String?
   liveDemoLink   String?
   iconLists      String[]
@@ -163,4 +163,18 @@ model DashboardSelection {
   selected  Boolean  @default(false)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model WorkExperience {
+  id          String    @id @default(cuid())
+  role        String
+  company     String?
+  startDate   DateTime
+  endDate     DateTime?
+  description String?
+  pin         String[]
+  location    String?
+  skills      String[]
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
 }

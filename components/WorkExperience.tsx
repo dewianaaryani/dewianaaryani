@@ -1,28 +1,7 @@
 "use client";
 import { workExperiences } from "@/app/data";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaBuilding, FaCalendar } from "react-icons/fa";
-const container: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
 
 export default function WorkExperience() {
   return (
@@ -33,7 +12,7 @@ export default function WorkExperience() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ amount: 0.3 }}
           className="text-center mb-12"
         >
           <p className="text-sm uppercase tracking-wider text-purple mb-2">
@@ -44,19 +23,20 @@ export default function WorkExperience() {
           </h1>
         </motion.div>
 
-        {/* Cards */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="max-w-6xl mx-auto space-y-6"
-        >
-          {workExperiences.map((exp) => (
+        {/* Cards Container */}
+        <div className="max-w-6xl mx-auto space-y-6">
+          {workExperiences.map((exp, index) => (
             <motion.div
               key={exp.id}
-              variants={item}
-              className="group bg-[#0a0a1f]/50 rounded-3xl p-8 border border-white/8 transition-all duration-300 ease-out will-change-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.05,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              viewport={{ amount: 0.2 }} // Each card triggers independently
+              className="group bg-[#0a0a1f]/50 rounded-3xl p-8 border border-white/8 hover:border-white/12 transition-colors duration-300"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
                 <div className="flex-1">
@@ -81,7 +61,7 @@ export default function WorkExperience() {
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-white/3 rounded-full border border-white/8 transition-colors duration-300 ease-out hover:bg-white/5 hover:border-white/12"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-white/3 rounded-full border border-white/8 transition-colors duration-300 hover:bg-white/5 hover:border-white/12"
                   >
                     <FaCalendar className="text-xs text-white-100" />
                     <span className="text-sm text-white-100">{exp.period}</span>
@@ -102,7 +82,7 @@ export default function WorkExperience() {
                     key={i}
                     whileHover={{ scale: 1.08, y: -2 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="px-4 py-2 bg-white/3 text-white text-sm rounded-full border border-white/8 transition-all duration-300 ease-out hover:bg-white/5 hover:border-purple/30 cursor-default"
+                    className="px-4 py-2 bg-white/3 text-white text-sm rounded-full border border-white/8 transition-all duration-300 hover:bg-white/5 hover:border-purple/30 cursor-default"
                   >
                     {skill}
                   </motion.span>
@@ -110,7 +90,7 @@ export default function WorkExperience() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

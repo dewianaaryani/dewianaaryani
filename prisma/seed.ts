@@ -12,17 +12,279 @@ const prisma = new PrismaClient({
 
 const userData: Prisma.UserCreateInput[] = [
   {
-    name: "Alice",
+    name: "Alice Johnson",
     email: "alice@prisma.io",
-    
+    password: "hashed_password_here", // In real app, use proper hashing
+    role: "owner",
+    emailVerified: new Date(),
+    image: "https://example.com/alice.jpg",
+    company: "Tech Corp",
+    jobTitle: "Senior Developer",
+    knowMeFrom: "LinkedIn",
   },
-  
+  {
+    name: "Bob Smith",
+    email: "bob@example.com",
+    password: "hashed_password_here",
+    role: "visitor",
+    emailVerified: new Date(),
+    image: "https://example.com/bob.jpg",
+    company: "Web Solutions",
+    jobTitle: "Frontend Developer",
+    knowMeFrom: "Conference",
+  },
+];
+
+const projectData: Prisma.ProjectCreateInput[] = [
+  {
+    name: "KALCER — AI Time Management App",
+    description: "Kalana is a smart time-management web app that uses AI to understand goals written in natural language and automatically break them down into scheduled action steps based on the user's availability.",
+    thumbnail: "kalana.png",
+    githubRepoLink: "https://github.com/username/kalcer",
+    liveDemoLink: "https://kalcer-demo.vercel.app",
+    iconLists: ["nextjs", "tailwindcss", "stream", "figma", "nextauth", "prisma", "supabase"],
+    selected: true,
+  },
+  {
+    name: "Munky Monkey - NFT Marketplace",
+    description: "Munky Monkey is a digital token whose ownership is recorded on the blockchain. Munky can be used for other things such as breeding, taking genes, being traded, etc.",
+    thumbnail: "monkey-munky.png",
+    githubRepoLink: "https://github.com/username/munky-monkey",
+    liveDemoLink: "https://munkymonkey-nft.vercel.app",
+    iconLists: ["figma"],
+    selected: true,
+  },
+  {
+    name: "Tani Pedia",
+    description: "Web-based platform designed to provide information and services for the agricultural community.",
+    thumbnail: "tani-pedia.jpg",
+    githubRepoLink: "https://github.com/username/tani-pedia",
+    liveDemoLink: "https://tanipedia-agriculture.vercel.app",
+    iconLists: ["laravel", "figma", "xampp", "bootstrap"],
+    selected: false,
+  },
+  {
+    name: "Plant Product Catalog Website Called Pot",
+    description: "A product gallery that presents premium indoor plants with clear visuals and structured information. Users can explore by plant type, sort products, and find what fits their home aesthetic — all through a simple and user-friendly interface.",
+    thumbnail: "pot.png",
+    githubRepoLink: "https://github.com/username/pot-plant-catalog",
+    liveDemoLink: "https://pot-plant-catalog.vercel.app",
+    iconLists: ["figma"],
+    selected: false,
+  },
+];
+
+
+const articleData: Prisma.ArticleCreateInput[] = [
+  {
+    title: "Getting Started with Prisma",
+    content: "Prisma is a next-generation ORM for Node.js and TypeScript...",
+    image: ["/articles/prisma-1.jpg", "/articles/prisma-2.jpg"],
+    published: true,
+  },
+  {
+    title: "Building Scalable APIs with GraphQL",
+    content: "GraphQL provides a flexible approach to building APIs...",
+    image: ["/articles/graphql-1.jpg"],
+    published: false,
+  },
+];
+
+const gridItemsData: Prisma.GridItemsCreateInput[] = [
+  {
+    title: "Project Management",
+    description: "Efficient project planning and tracking",
+    className: "col-span-2",
+    imgClassName: "w-full h-full",
+    titleClassName: "text-xl font-bold",
+    img: "/grid/project-management.jpg",
+    spareImg: "/grid/project-management-alt.jpg",
+  },
+  {
+    title: "UI/UX Design",
+    description: "Beautiful and intuitive user interfaces",
+    className: "col-span-1",
+    imgClassName: "w-3/4 h-3/4",
+    titleClassName: "text-lg font-semibold",
+    img: "/grid/ui-ux.jpg",
+  },
+];
+
+const educationData: Prisma.EducationCreateInput[] = [
+  {
+    name: "Stanford University",
+    degree: "Master of Science",
+    field: "Computer Science",
+    startDate: new Date("2018-09-01"),
+    endDate: new Date("2020-05-31"),
+  },
+  {
+    name: "MIT",
+    degree: "Bachelor of Science",
+    field: "Software Engineering",
+    startDate: new Date("2014-09-01"),
+    endDate: new Date("2018-05-31"),
+  },
+];
+
+const certificateData: Prisma.CertificateCreateInput[] = [
+  {
+    name: "AWS Certified Solutions Architect",
+    issuer: "Amazon Web Services",
+    issueDate: new Date("2022-03-15"),
+    validity: "limited",
+    expireDate: new Date("2025-03-15"),
+    image: "/certs/aws-sa.jpg",
+    url: "https://aws.amazon.com/certification/",
+  },
+  {
+    name: "Google Cloud Professional Developer",
+    issuer: "Google",
+    issueDate: new Date("2021-11-20"),
+    validity: "limited",
+    expireDate: new Date("2024-11-20"),
+    image: "/certs/gcp-dev.jpg",
+    url: "https://cloud.google.com/certification",
+  },
+];
+
+const dashboardSelectionData: Prisma.DashboardSelectionCreateInput[] = [
+  {
+    name: "Dark Mode",
+    selected: true,
+  },
+  {
+    name: "Notifications",
+    selected: false,
+  },
+  {
+    name: "Sidebar Collapsed",
+    selected: true,
+  },
+];
+
+const workExperienceData: Prisma.WorkExperienceCreateInput[] = [
+  {
+    role: "Senior Full Stack Developer",
+    company: "Tech Innovations Inc.",
+    startDate: new Date("2021-06-01"),
+    endDate: null, // Current job
+    description: "Leading development of enterprise web applications",
+    pin: ["React", "Node.js", "TypeScript", "AWS"],
+    location: "San Francisco, CA",
+    skills: ["JavaScript", "React", "Node.js", "MongoDB", "Docker"],
+  },
+  {
+    role: "Frontend Developer",
+    company: "Digital Solutions LLC",
+    startDate: new Date("2019-01-15"),
+    endDate: new Date("2021-05-31"),
+    description: "Built responsive web applications for various clients",
+    pin: ["Vue.js", "Sass", "REST APIs"],
+    location: "Remote",
+    skills: ["Vue.js", "CSS3", "HTML5", "Git", "Agile"],
+  },
 ];
 
 export async function main() {
+  console.log("Start seeding...");
+
+  // Clear existing data (optional - be careful in production!)
+  await prisma.workExperience.deleteMany();
+  await prisma.dashboardSelection.deleteMany();
+  await prisma.certificate.deleteMany();
+  await prisma.education.deleteMany();
+  await prisma.gridItems.deleteMany();
+  await prisma.testimonial.deleteMany();
+  await prisma.article.deleteMany();
+  await prisma.project.deleteMany();
+  await prisma.account.deleteMany();
+  await prisma.session.deleteMany();
+  await prisma.verificationToken.deleteMany();
+  await prisma.user.deleteMany();
+
+  // Seed Users
   for (const u of userData) {
-    await prisma.user.create({ data: u });
+    const user = await prisma.user.create({ data: u });
+    console.log(`Created user with id: ${user.id}`);
   }
+
+  // Seed Projects
+  for (const p of projectData) {
+    const project = await prisma.project.create({ data: p });
+    console.log(`Created project with id: ${project.id}`);
+  }
+
+  // Seed Articles
+  for (const a of articleData) {
+    const article = await prisma.article.create({ data: a });
+    console.log(`Created article with id: ${article.id}`);
+  }
+
+  // Seed GridItems
+  for (const g of gridItemsData) {
+    const gridItem = await prisma.gridItems.create({ data: g });
+    console.log(`Created grid item with id: ${gridItem.id}`);
+  }
+
+  // Seed Education
+  for (const e of educationData) {
+    const education = await prisma.education.create({ data: e });
+    console.log(`Created education record with id: ${education.id}`);
+  }
+
+  // Seed Certificates
+  for (const c of certificateData) {
+    const certificate = await prisma.certificate.create({ data: c });
+    console.log(`Created certificate with id: ${certificate.id}`);
+  }
+
+  // Seed Dashboard Selections
+  for (const d of dashboardSelectionData) {
+    const selection = await prisma.dashboardSelection.create({ data: d });
+    console.log(`Created dashboard selection with id: ${selection.id}`);
+  }
+
+  // Seed Work Experiences
+  for (const w of workExperienceData) {
+    const workExp = await prisma.workExperience.create({ data: w });
+    console.log(`Created work experience with id: ${workExp.id}`);
+  }
+
+  // Seed Testimonials (needs users and projects to exist)
+  const users = await prisma.user.findMany();
+  const projects = await prisma.project.findMany();
+
+  if (users.length > 0 && projects.length > 0) {
+    const testimonialData: Prisma.TestimonialCreateInput[] = [
+      {
+        quote: "Excellent work! The project was delivered on time and exceeded our expectations.",
+        approved: true,
+        user: { connect: { id: users[0].id } },
+        project: { connect: { id: projects[0].id } },
+      },
+      {
+        quote: "Professional and skilled developer. Highly recommended!",
+        approved: false,
+        user: { connect: { id: users[1]?.id || users[0].id } },
+        project: { connect: { id: projects[1]?.id || projects[0].id } },
+      },
+    ];
+
+    for (const t of testimonialData) {
+      const testimonial = await prisma.testimonial.create({ data: t });
+      console.log(`Created testimonial with id: ${testimonial.id}`);
+    }
+  }
+
+  console.log("Seeding finished.");
 }
 
-main();
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
