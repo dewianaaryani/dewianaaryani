@@ -21,11 +21,11 @@ export default async function Home() {
 
         <Hero />
         <Grid />
-        <RecentProjects />
+        {/* <RecentProjects /> */}
         {/* <Clients /> */}
-        <WorkExperience />
+        {/* <WorkExperience />
         <OrganizationExperience />
-        <Certificates />
+        <Certificates /> */}
         <Experience />
 
         {/* <Approach /> */}

@@ -49,8 +49,8 @@ const projectData: Prisma.ProjectCreateInput[] = [
     name: "Munky Monkey - NFT Marketplace",
     description: "Munky Monkey is a digital token whose ownership is recorded on the blockchain. Munky can be used for other things such as breeding, taking genes, being traded, etc.",
     thumbnail: "monkey-munky.png",
-    githubRepoLink: "https://github.com/username/munky-monkey",
-    liveDemoLink: "https://munkymonkey-nft.vercel.app",
+    githubRepoLink: "",
+    liveDemoLink: "https://dribbble.com/shots/26843000-Scheduler-and-Time-Management-Web-App-Powered-By-AI",
     iconLists: ["figma"],
     selected: true,
   },
@@ -61,7 +61,7 @@ const projectData: Prisma.ProjectCreateInput[] = [
     githubRepoLink: "https://github.com/username/tani-pedia",
     liveDemoLink: "https://tanipedia-agriculture.vercel.app",
     iconLists: ["laravel", "figma", "xampp", "bootstrap"],
-    selected: false,
+    selected: true,
   },
   {
     name: "Plant Product Catalog Website Called Pot",
@@ -70,7 +70,7 @@ const projectData: Prisma.ProjectCreateInput[] = [
     githubRepoLink: "https://github.com/username/pot-plant-catalog",
     liveDemoLink: "https://pot-plant-catalog.vercel.app",
     iconLists: ["figma"],
-    selected: false,
+    selected: true,
   },
 ];
 
@@ -175,14 +175,24 @@ const workExperienceData: Prisma.WorkExperienceCreateInput[] = [
     skills: ["JavaScript", "React", "Node.js", "MongoDB", "Docker"],
   },
   {
-    role: "Frontend Developer",
-    company: "Digital Solutions LLC",
+    role: "Web Application Developer",
+    company: "Freelace",
     startDate: new Date("2019-01-15"),
     endDate: new Date("2021-05-31"),
     description: "Built responsive web applications for various clients",
     pin: ["Vue.js", "Sass", "REST APIs"],
     location: "Remote",
     skills: ["Vue.js", "CSS3", "HTML5", "Git", "Agile"],
+  },
+   {
+    role: "Web Application Developer Internship",
+    company: "PT Laskar Teknologi Mulia (Cyberlabs)",
+    startDate: new Date("2021-06-01"),
+    endDate: null, // Current job
+    description: "Built responsive web applications",
+    pin: ["Implemented front-end designs using HTML, CSS, and JavaScript to create interactive user interfaces.", "Developed back-end functionality using PHP framework Laravel to handle data processing and server-side operations.", "Documented the development process, including codebase organization, configuration settings, and deployment procedures."],
+    location: "Remote",
+    skills: ["laravel-svgrepo-com.svg", "word.png"],
   },
 ];
 

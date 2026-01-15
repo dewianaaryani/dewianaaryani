@@ -33,7 +33,7 @@ export async function GET() {
     })
 
     // Transform projects with image URLs
-    const transformedProjects = projects.map(project => ({
+  const transformedProjects = projects.map(project => ({
       id: project.id,
       title: project.name,
       des: project.description,
