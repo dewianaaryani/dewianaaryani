@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase"
 
 export function getProjectImageUrl(filename: string): string {
-  if (!filename) return '/placeholder.jpg'
+  if (!filename) return '/projects/placeholder.svg'
   
   const { data } = supabase.storage
     .from('projects')  // Your bucket name
@@ -12,7 +12,7 @@ export function getProjectImageUrl(filename: string): string {
 
 // Optional: If you want to handle different buckets
 export function getImageUrl(bucket: string, filename: string): string {
-  if (!filename) return '/placeholder.jpg'
+  if (!filename) return '/projects/placeholder.svg'
   
   const { data } = supabase.storage
     .from(bucket)

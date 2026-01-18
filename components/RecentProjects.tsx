@@ -48,6 +48,24 @@ const RecentProjects = () => {
       </div>
     );
   }
+  const ps = {
+    name: "KALCER — AI Time Management App",
+    description:
+      "Kalana is a smart time-management web app that uses AI to understand goals written in natural language and automatically break them down into scheduled action steps based on the user's availability.",
+    thumbnail: "kalana.png",
+    githubRepoLink: "https://github.com/username/kalcer",
+    liveDemoLink: "https://kalcer-demo.vercel.app",
+    iconLists: [
+      "nextjs",
+      "tailwindcss",
+      "stream",
+      "figma",
+      "nextauth",
+      "prisma",
+      "supabase",
+    ],
+    selected: true,
+  };
 
   if (projects.length === 0) {
     return (
@@ -89,7 +107,7 @@ const RecentProjects = () => {
                   className="z-10 absolute bottom-0 max-h-full max-w-full object-contain p-4"
                   onError={(e) => {
                     // Fallback if image fails to load
-                    e.currentTarget.src = "/placeholder-project.png";
+                    e.currentTarget.src = "/placeholder.svg";
                   }}
                 />
               </div>
@@ -108,7 +126,7 @@ const RecentProjects = () => {
                       className="bg-[#0b0f1a] border border-gray-800 shadow-lg w-8 h-8"
                     >
                       <AvatarImage
-                        src={`/icons/${icon}.svg`} // Assuming icons are in /public/icons/
+                        src={icon} // Assuming icons are in /public/icons/
                         alt={icon}
                         className="p-1.5"
                         onError={(e) => {

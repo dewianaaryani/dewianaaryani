@@ -40,9 +40,9 @@ const projectData: Prisma.ProjectCreateInput[] = [
     name: "KALCER — AI Time Management App",
     description: "Kalana is a smart time-management web app that uses AI to understand goals written in natural language and automatically break them down into scheduled action steps based on the user's availability.",
     thumbnail: "kalana.png",
-    githubRepoLink: "https://github.com/username/kalcer",
+    githubRepoLink: "https://github.com/dewianaaryani/scheduler-ai",
     liveDemoLink: "https://kalcer-demo.vercel.app",
-    iconLists: ["nextjs", "tailwindcss", "stream", "figma", "nextauth", "prisma", "supabase"],
+    iconLists: ["uml.png", "git.svg", "nextjs.svg", "tailwindcss.svg", "stream.svg", "figma.svg", "nextauth.svg", "prisma.svg", "supabase.svg"],
     selected: true,
   },
   {
@@ -51,25 +51,25 @@ const projectData: Prisma.ProjectCreateInput[] = [
     thumbnail: "monkey-munky.png",
     githubRepoLink: "",
     liveDemoLink: "https://dribbble.com/shots/26843000-Scheduler-and-Time-Management-Web-App-Powered-By-AI",
-    iconLists: ["figma"],
+    iconLists: ["figma.svg"],
     selected: true,
   },
   {
     name: "Tani Pedia",
     description: "Web-based platform designed to provide information and services for the agricultural community.",
     thumbnail: "tani-pedia.jpg",
-    githubRepoLink: "https://github.com/username/tani-pedia",
-    liveDemoLink: "https://tanipedia-agriculture.vercel.app",
-    iconLists: ["laravel", "figma", "xampp", "bootstrap"],
+    githubRepoLink: "",
+    liveDemoLink: "https://dribbble.com/shots/26943340-Tani-Pedia-Agricultural-Website",
+    iconLists: ["uml.png","git.svg","laravel.svg", "figma.svg", "xampp.svg", "bootstrap.svg", "hostinger.svg", "ms-word.png"],
     selected: true,
   },
   {
     name: "Plant Product Catalog Website Called Pot",
     description: "A product gallery that presents premium indoor plants with clear visuals and structured information. Users can explore by plant type, sort products, and find what fits their home aesthetic — all through a simple and user-friendly interface.",
     thumbnail: "pot.png",
-    githubRepoLink: "https://github.com/username/pot-plant-catalog",
-    liveDemoLink: "https://pot-plant-catalog.vercel.app",
-    iconLists: ["figma"],
+    githubRepoLink: "",
+    liveDemoLink: "https://dribbble.com/shots/26842693-Plant-Product-Catalog-Website-Called-Pot",
+    iconLists: ["figma.svg"],
     selected: true,
   },
 ];
@@ -165,20 +165,20 @@ const dashboardSelectionData: Prisma.DashboardSelectionCreateInput[] = [
 
 const workExperienceData: Prisma.WorkExperienceCreateInput[] = [
   {
-    role: "Senior Full Stack Developer",
-    company: "Tech Innovations Inc.",
-    startDate: new Date("2021-06-01"),
+    role: "UI-UX Designer",
+    company: "Freelance",
+    startDate: new Date("2021-01-01"),
     endDate: null, // Current job
     description: "Leading development of enterprise web applications",
     pin: ["React", "Node.js", "TypeScript", "AWS"],
-    location: "San Francisco, CA",
+    location: "Remote",
     skills: ["JavaScript", "React", "Node.js", "MongoDB", "Docker"],
   },
   {
     role: "Web Application Developer",
     company: "Freelace",
-    startDate: new Date("2019-01-15"),
-    endDate: new Date("2021-05-31"),
+   startDate: new Date("2021-01-01"),
+    endDate: null, // Current job
     description: "Built responsive web applications for various clients",
     pin: ["Vue.js", "Sass", "REST APIs"],
     location: "Remote",
@@ -187,8 +187,8 @@ const workExperienceData: Prisma.WorkExperienceCreateInput[] = [
    {
     role: "Web Application Developer Internship",
     company: "PT Laskar Teknologi Mulia (Cyberlabs)",
-    startDate: new Date("2021-06-01"),
-    endDate: null, // Current job
+    startDate: new Date("2020-10-01"),
+    endDate: new Date("2020-12-01"), // Current job
     description: "Built responsive web applications",
     pin: ["Implemented front-end designs using HTML, CSS, and JavaScript to create interactive user interfaces.", "Developed back-end functionality using PHP framework Laravel to handle data processing and server-side operations.", "Documented the development process, including codebase organization, configuration settings, and deployment procedures."],
     location: "Remote",

@@ -1,7 +1,7 @@
 // app/api/projects/route.ts
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { getProjectImageUrl } from '@/utils/supabaseImage'
+import { getImageUrl, getProjectImageUrl } from '@/utils/supabaseImage'
 
 export async function GET() {
   try {
@@ -38,14 +38,16 @@ export async function GET() {
       title: project.name,
       des: project.description,
       img: getProjectImageUrl(project.thumbnail),
-      iconLists: project.iconLists,
+      iconLists: project.iconLists.map(icon => getImageUrl('icons', icon)),
       githubRepoLink: project.githubRepoLink,
       liveDemoLink: project.liveDemoLink,
       selected: project.selected,
       testimonialCount: project.testimonials.length,
     }))
 
+    console.log(transformedProjects);
     return NextResponse.json(transformedProjects)
+    
   } catch (error) {
     console.error('Error fetching projects:', error)
     
