@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { PinContainer } from "./ui/3d-pin";
 import { FaLocationArrow } from "react-icons/fa6";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import Image from "next/image";
 
 interface Project {
   id: string;
@@ -48,25 +49,6 @@ const RecentProjects = () => {
       </div>
     );
   }
-  const ps = {
-    name: "KALCER — AI Time Management App",
-    description:
-      "Kalana is a smart time-management web app that uses AI to understand goals written in natural language and automatically break them down into scheduled action steps based on the user's availability.",
-    thumbnail: "kalana.png",
-    githubRepoLink: "https://github.com/username/kalcer",
-    liveDemoLink: "https://kalcer-demo.vercel.app",
-    iconLists: [
-      "nextjs",
-      "tailwindcss",
-      "stream",
-      "figma",
-      "nextauth",
-      "prisma",
-      "supabase",
-    ],
-    selected: true,
-  };
-
   if (projects.length === 0) {
     return (
       <div className="py-20 mt-14 w-full" id="projects">
@@ -87,24 +69,23 @@ const RecentProjects = () => {
         A small selection of{" "}
         <span className="text-purple">recent projects</span>
       </h1>
-      <div className="flex flex-wrap items-center justify-center mt-10 gap-x-12 gap-y-4 lg:gap-y-18 w-full">
+      <div className="flex flex-wrap items-center justify-between mt-10 gap-x-12 gap-y-4 lg:gap-y-18 w-full">
         {projects.map(({ id, title, des, img, iconLists, liveDemoLink }) => (
           <div
             key={id}
-            className="lg:min-h-130 h-100 flex items-center justify-center sm:w-[570px] w-[80vw]"
+            className="lg:min-h-130 h-100 flex items-center justify-center w-[570px] group"
           >
             <PinContainer
               title={title}
               href={liveDemoLink || `/projects/${id}`}
             >
-              <div className="relative flex items-center justify-center sm:w-[500px] w-[80vw] overflow-hidden sm:h-[35vh] h-[30vh] mb-10 rounded-2xl">
-                <div className="relative w-full h-full overflow-hidden rounded-2xl lg:rounded-3xl bg-gradient-to-br from-[#13162d] to-[#0b0f1a]">
-                  <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-                </div>
-                <img
+              <div className="relative flex items-center justify-center w-[350] sm:w-[530px] overflow-hidden sm:h-[35vh] h-[30vh] mb-10 rounded-2xl">
+                <Image
                   src={img}
                   alt={title}
-                  className="z-10 absolute bottom-0 max-h-full max-w-full object-contain p-4"
+                  width={700}
+                  height={500}
+                  className="z-10 max-h-full max-w-full w-full object-cover"
                   onError={(e) => {
                     // Fallback if image fails to load
                     e.currentTarget.src = "/placeholder.svg";
@@ -119,7 +100,7 @@ const RecentProjects = () => {
               </p>
 
               <div className="flex items-center justify-between mt-7 mb-3">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center -space-x-3  group-hover:space-x-1 transition-all duration-1000 ease-out">
                   {iconLists.map((icon, index) => (
                     <Avatar
                       key={`${id}-icon-${index}`}
@@ -134,7 +115,7 @@ const RecentProjects = () => {
                           e.currentTarget.style.display = "none";
                           const fallback =
                             e.currentTarget.parentElement?.querySelector(
-                              ".avatar-fallback"
+                              ".avatar-fallback",
                             );
                           if (fallback) {
                             fallback.innerHTML = icon.slice(0, 2).toUpperCase();
@@ -149,7 +130,7 @@ const RecentProjects = () => {
                 </div>
                 <div className="flex justify-center items-center group cursor-pointer">
                   <p className="flex lg:text-xl md:text-xs text-sm text-purple group-hover:underline">
-                    {liveDemoLink ? "Live Demo" : "View Details"}
+                    {liveDemoLink ? "Details" : "Github Repo"}
                   </p>
                   <FaLocationArrow
                     className="ms-3 group-hover:translate-x-1 transition-transform"
