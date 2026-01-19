@@ -69,17 +69,17 @@ const RecentProjects = () => {
         A small selection of{" "}
         <span className="text-purple">recent projects</span>
       </h1>
-      <div className="flex flex-wrap items-center justify-between mt-10 gap-x-12 gap-y-4 lg:gap-y-18 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 md:gap-10 lg:gap-12 items-center justify-center sm:justify-between mt-0 sm:mt-2 lg:mt-8  w-full">
         {projects.map(({ id, title, des, img, iconLists, liveDemoLink }) => (
           <div
             key={id}
-            className="lg:min-h-130 h-100 flex items-center justify-center w-[570px] group"
+            className="lg:min-h-140 h-110 md:h-120 flex items-center w-full justify-center group"
           >
             <PinContainer
               title={title}
               href={liveDemoLink || `/projects/${id}`}
             >
-              <div className="relative flex items-center justify-center w-[350] sm:w-[530px] overflow-hidden sm:h-[35vh] h-[30vh] mb-10 rounded-2xl">
+              <div className="relative flex items-center w-full justify-center  overflow-hidden sm:h-[35vh] h-[30vh] mb-10 rounded-2xl">
                 <Image
                   src={img}
                   alt={title}
