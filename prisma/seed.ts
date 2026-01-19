@@ -165,32 +165,46 @@ const dashboardSelectionData: Prisma.DashboardSelectionCreateInput[] = [
 
 const workExperienceData: Prisma.WorkExperienceCreateInput[] = [
   {
-    role: "UI-UX Designer",
+     role: "UI/UX Designer",
     company: "Freelance",
     startDate: new Date("2021-01-01"),
-    endDate: null, // Current job
-    description: "Leading development of enterprise web applications",
-    pin: ["React", "Node.js", "TypeScript", "AWS"],
+    endDate: null,
+    description:
+      "Designed intuitive and user-centered interfaces for web applications, focusing on usability, accessibility, and visual consistency.",
+    pin: [
+      "Created wireframes, user flows, and high-fidelity UI designs aligned with user needs and business objectives.",
+      "Collaborated with developers to ensure accurate implementation of design specifications.",
+      "Conducted usability reviews and iterated designs based on feedback and best practices.",
+    ],
     location: "Remote",
-    skills: ["JavaScript", "React", "Node.js", "MongoDB", "Docker"],
+    skills: ["figma.svg" , "adobe-xd.svg"],
   },
-  {
-    role: "Web Application Developer",
-    company: "Freelace",
-   startDate: new Date("2021-01-01"),
-    endDate: null, // Current job
-    description: "Built responsive web applications for various clients",
-    pin: ["Vue.js", "Sass", "REST APIs"],
+  {role: "Web Application Developer",
+    company: "Freelance",
+    startDate: new Date("2021-01-01"),
+    endDate: null,
+    description:
+      "Developed and maintained responsive web applications for multiple clients using modern web technologies.",
+    pin: [
+      "Built responsive and accessible web interfaces using HTML, CSS, and JavaScript.",
+      "Implemented dynamic features and client-side logic to improve user experience.",
+      "Collaborated directly with clients to translate requirements into functional web solutions.",
+    ],
     location: "Remote",
     skills: ["Vue.js", "CSS3", "HTML5", "Git", "Agile"],
   },
    {
-    role: "Web Application Developer Internship",
+    role: "Web Application Developer Intern",
     company: "PT Laskar Teknologi Mulia (Cyberlabs)",
     startDate: new Date("2020-10-01"),
-    endDate: new Date("2020-12-01"), // Current job
-    description: "Built responsive web applications",
-    pin: ["Implemented front-end designs using HTML, CSS, and JavaScript to create interactive user interfaces.", "Developed back-end functionality using PHP framework Laravel to handle data processing and server-side operations.", "Documented the development process, including codebase organization, configuration settings, and deployment procedures."],
+    endDate: new Date("2020-12-01"),
+    description:
+      "Contributed to the development of web applications during an internship program, focusing on both front-end and back-end implementation.",
+    pin: [
+      "Implemented front-end interfaces using HTML, CSS, and JavaScript to create interactive and user-friendly pages.",
+      "Developed server-side functionality using the Laravel framework to handle data processing and application logic.",
+      "Documented development workflows, code structure, and deployment processes to support team collaboration and maintenance.",
+    ],
     location: "Remote",
     skills: ["laravel-svgrepo-com.svg", "word.png"],
   },

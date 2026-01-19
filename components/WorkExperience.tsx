@@ -1,12 +1,60 @@
 "use client";
-import { workExperiences } from "@/app/data";
+
+import type { WorkExperience } from "@/lib/interface";
+import { formatDate } from "@/utils/date";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { FaBuilding, FaCalendar } from "react-icons/fa";
 
 export default function WorkExperience() {
+  const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const response = await fetch("api/work-experiences");
+        const data = await response.json();
+        setWorkExperiences(data);
+      } catch (error) {
+        console.error("Error fetching workExperiences:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="py-20 mt-14 w-full" id="workExperiences">
+        <h1 className="heading">
+          A small selection of{" "}
+          <span className="text-purple">recent workExperiences</span>
+        </h1>
+        <div className="flex items-center justify-center mt-10">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple"></div>
+        </div>
+      </div>
+    );
+  }
+  if (workExperiences.length === 0) {
+    return (
+      <div className="py-20 mt-14 w-full" id="workExperiences">
+        <h1 className="heading">
+          A small selection of{" "}
+          <span className="text-purple">recent workExperiences</span>
+        </h1>
+        <div className="text-center mt-10 text-gray-400">
+          No workExperiences found. Add some workExperiences in the admin panel.
+        </div>
+      </div>
+    );
+  }
   return (
-    <div className="min-h-screen">
-      <div className="py-20 w-full px-4" id="experience">
+    <div className="min-h-screen w-full items-center justify-center">
+      <div className="py-20 w-full items-center justify-center" id="experience">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -24,7 +72,7 @@ export default function WorkExperience() {
         </motion.div>
 
         {/* Cards Container */}
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div className=" space-y-6">
           {workExperiences.map((exp, index) => (
             <motion.div
               key={exp.id}
@@ -64,7 +112,12 @@ export default function WorkExperience() {
                     className="flex items-center gap-2 px-3 py-1.5 bg-white/3 rounded-full border border-white/8 transition-colors duration-300 hover:bg-white/5 hover:border-white/12"
                   >
                     <FaCalendar className="text-xs text-white-100" />
-                    <span className="text-sm text-white-100">{exp.period}</span>
+                    <span className="text-sm text-white-100">
+                      <span>
+                        {formatDate(exp.startDate)} -{" "}
+                        {exp.endDate ? formatDate(exp.endDate) : "Present"}
+                      </span>
+                    </span>
                   </motion.div>
                   <span className="text-xs text-white-100/70">
                     {exp.location}

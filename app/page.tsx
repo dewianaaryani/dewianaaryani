@@ -23,8 +23,8 @@ export default async function Home() {
         <Grid />
         <RecentProjects />
         {/* <Clients /> */}
-        {/* <WorkExperience />
-        <OrganizationExperience />
+        <WorkExperience />
+        {/* <OrganizationExperience />
         <Certificates /> */}
         <Experience />
 
