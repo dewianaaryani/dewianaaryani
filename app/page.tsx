@@ -24,9 +24,9 @@ export default async function Home() {
         <RecentProjects />
         {/* <Clients /> */}
         <WorkExperience />
-        {/* <OrganizationExperience />
-        <Certificates /> */}
-        <Experience />
+        {/* <OrganizationExperience /> */}
+        {/* <Certificates /> */}
+        {/* <Experience /> */}
 
         {/* <Approach /> */}
         <Footer />

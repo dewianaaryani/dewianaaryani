@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaBuilding, FaCalendar } from "react-icons/fa";
 import IconTransition from "./IconTransition";
+import { Dot } from "lucide-react";
 
 export default function WorkExperience() {
   const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
@@ -85,11 +86,11 @@ export default function WorkExperience() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               viewport={{ amount: 0.2 }} // Each card triggers independently
-              className="group bg-[#0a0a1f]/50 rounded-3xl p-8 border border-white/8 hover:border-white/12 transition-colors duration-300"
+              className="group bg-[#0a0a1f]/50 rounded-3xl p-8 border border-white/8 hover:border-white/20 transition-colors duration-300 gap-6 flex flex-col "
             >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 ">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
@@ -97,46 +98,57 @@ export default function WorkExperience() {
                     >
                       <FaBuilding className="text-purple text-lg" />
                     </motion.div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-white">
+                    <div className="flex flex-col">
+                      <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-white">
                         {exp.role}
                       </h3>
-                      <p className="text-purple font-semibold">{exp.company}</p>
+                      <p className="mt-1 text-purple font-medium text-sm md:text-md">
+                        {exp.company}
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-col items-start md:items-end gap-2">
+                <div className="flex  md:flex-col items-center justify-between md:items-end gap-2">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="flex items-center gap-2 px-3 py-1.5 bg-white/3 rounded-full border border-white/8 transition-colors duration-300 hover:bg-white/5 hover:border-white/12"
                   >
                     <FaCalendar className="text-xs text-white-100" />
-                    <span className="text-sm text-white-100">
+                    <span className="text-xs md:text-sm text-white-100">
                       <span>
                         {formatDate(exp.startDate)} -{" "}
                         {exp.endDate ? formatDate(exp.endDate) : "Present"}
                       </span>
                     </span>
                   </motion.div>
-                  <span className="text-xs text-white-100/70">
+                  <span className="text-xs md:text-sm text-white-100/70">
                     {exp.location}
                   </span>
                 </div>
               </div>
 
-              <p className="text-white-100/80 mb-6 leading-relaxed">
-                {exp.description}
-              </p>
-              {exp.pin.map((pinItem, pinIndex) => (
-                <span
-                  key={`pin-${pinIndex}`}
-                  className="inline-block bg-purple/10 text-purple text-xs font-medium mr-2 mb-2 px-3 py-1 rounded-full"
-                >
-                  {pinItem}
-                </span>
-              ))}
+              <div className="flex flex-col items-start gap-4">
+                <p className="text-white-300 leading-relaxed text-sm md:text-base">
+                  {exp.description}
+                </p>
+                <div className="flex flex-col items-start gap-2 text-xs md:text-sm font-medium text-white-200">
+                  <p>What I did:</p>
+                  {exp.pin.map((pinItem, pinIndex) => (
+                    <div
+                      key={`pin-${pinIndex}`}
+                      className="flex items-center  "
+                    >
+                      <Dot
+                        className="inline-block mr-2 text-purple"
+                        size={26}
+                      />
+                      <p>{pinItem}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               <IconTransition iconLists={exp.skills} />
             </motion.div>
