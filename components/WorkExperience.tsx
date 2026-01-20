@@ -5,6 +5,7 @@ import { formatDate } from "@/utils/date";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaBuilding, FaCalendar } from "react-icons/fa";
+import IconTransition from "./IconTransition";
 
 export default function WorkExperience() {
   const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
@@ -128,19 +129,16 @@ export default function WorkExperience() {
               <p className="text-white-100/80 mb-6 leading-relaxed">
                 {exp.description}
               </p>
+              {exp.pin.map((pinItem, pinIndex) => (
+                <span
+                  key={`pin-${pinIndex}`}
+                  className="inline-block bg-purple/10 text-purple text-xs font-medium mr-2 mb-2 px-3 py-1 rounded-full"
+                >
+                  {pinItem}
+                </span>
+              ))}
 
-              <div className="flex flex-wrap gap-2">
-                {exp.skills.map((skill, i) => (
-                  <motion.span
-                    key={i}
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="px-4 py-2 bg-white/3 text-white text-sm rounded-full border border-white/8 transition-all duration-300 hover:bg-white/5 hover:border-purple/30 cursor-default"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
+              <IconTransition iconLists={exp.skills} />
             </motion.div>
           ))}
         </div>

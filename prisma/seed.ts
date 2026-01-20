@@ -191,7 +191,7 @@ const workExperienceData: Prisma.WorkExperienceCreateInput[] = [
       "Collaborated directly with clients to translate requirements into functional web solutions.",
     ],
     location: "Remote",
-    skills: ["Vue.js", "CSS3", "HTML5", "Git", "Agile"],
+    skills: ["uml.png", "git.svg", "nextjs.svg", "tailwindcss.svg", "stream.svg", "figma.svg", "nextauth.svg", "prisma.svg", "supabase.svg","laravel.svg", "xampp.svg", "bootstrap.svg","hostinger.svg"],
   },
    {
     role: "Web Application Developer Intern",
@@ -206,7 +206,7 @@ const workExperienceData: Prisma.WorkExperienceCreateInput[] = [
       "Documented development workflows, code structure, and deployment processes to support team collaboration and maintenance.",
     ],
     location: "Remote",
-    skills: ["laravel-svgrepo-com.svg", "word.png"],
+    skills: ["uml.png","git.svg","laravel.svg", "figma.svg", "xampp.svg", "bootstrap.svg"],
   },
 ];
 

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import type { WorkExperience } from "@/lib/interface";
+import { getImageUrl } from "@/utils/supabaseImage";
 
 export async function GET() {
   try {
@@ -20,8 +21,9 @@ export async function GET() {
       description: item.description,
       pin: item.pin,
       location: item.location,
-      skills: item.skills,
+      skills: item.skills.map((skill) => getImageUrl("icons", skill)),
     }));
+console.log(result);
 
     return NextResponse.json(result);
   } catch (error) {

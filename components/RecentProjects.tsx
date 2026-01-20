@@ -6,6 +6,7 @@ import { PinContainer } from "./ui/3d-pin";
 import { FaLocationArrow } from "react-icons/fa6";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Image from "next/image";
+import IconTransition from "./IconTransition";
 
 interface Project {
   id: string;
@@ -100,7 +101,7 @@ const RecentProjects = () => {
               </p>
 
               <div className="flex items-center justify-between mt-7 mb-3">
-                <div className="flex items-center -space-x-3  group-hover:space-x-1 transition-all duration-1000 ease-out">
+                {/* <div className="flex items-center -space-x-3  group-hover:space-x-1 transition-all duration-1000 ease-out">
                   {iconLists.map((icon, index) => (
                     <Avatar
                       key={`${id}-icon-${index}`}
@@ -127,7 +128,8 @@ const RecentProjects = () => {
                       </AvatarFallback>
                     </Avatar>
                   ))}
-                </div>
+                </div> */}
+                <IconTransition iconLists={iconLists} />
                 <div className="flex justify-center items-center group cursor-pointer">
                   <p className="flex lg:text-xl md:text-xs text-sm text-purple group-hover:underline">
                     {liveDemoLink ? "Details" : "Github Repo"}
