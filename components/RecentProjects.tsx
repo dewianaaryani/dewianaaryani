@@ -6,6 +6,7 @@ import { PinContainer } from "./ui/3d-pin";
 import { FaLocationArrow } from "react-icons/fa6";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import IconTransition from "./IconTransition";
 
 interface Project {
@@ -66,10 +67,20 @@ const RecentProjects = () => {
 
   return (
     <div className="py-20 mt-14 w-full" id="projects">
-      <h1 className="heading">
-        A small selection of{" "}
-        <span className="text-purple">recent projects</span>
-      </h1>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ amount: 0.3 }}
+        className="text-center mb-12"
+      >
+        <p className="text-sm uppercase tracking-wider text-purple mb-2">
+          A Small Selection of
+        </p>
+        <h1 className="text-4xl md:text-5xl font-bold">
+          Recent <span className="text-purple">Projects</span>
+        </h1>
+      </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 md:gap-10 lg:gap-12 items-center justify-center sm:justify-between mt-0 sm:mt-2 lg:mt-8  w-full">
         {projects.map(({ id, title, des, img, iconLists, liveDemoLink }) => (
           <div
