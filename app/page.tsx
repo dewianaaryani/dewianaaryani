@@ -12,6 +12,7 @@ import TestingImage from "@/components/TestingImage";
 import WorkExperience from "@/components/WorkExperience";
 import OrganizationExperience from "@/components/OrganizationExperience";
 import Certificates from "@/components/Certificates";
+import DiscoverMore from "@/components/DiscoverMoreSection/DiscoverMore";
 
 export default async function Home() {
   return (
@@ -24,7 +25,8 @@ export default async function Home() {
         <RecentProjects />
         {/* <Clients /> */}
         <WorkExperience />
-        {/* <OrganizationExperience /> */}
+
+        <DiscoverMore />
         {/* <Certificates /> */}
         {/* <Experience /> */}
 

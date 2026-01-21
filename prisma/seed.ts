@@ -209,6 +209,20 @@ const workExperienceData: Prisma.WorkExperienceCreateInput[] = [
     skills: ["uml.png","git.svg","laravel.svg", "figma.svg", "xampp.svg", "bootstrap.svg"],
   },
 ];
+const organizationExperienceData: Prisma.OrganizationExperienceCreateInput = {
+  role: "Visual Designer (Volunteer)",
+  organization: "Visual Designer",
+  startDate: new Date("2021-10-01"),
+  endDate: new Date("2022-02-28"),
+  description: "Participated as a Visual Designer in FIKTI Career, a faculty-level career development initiative designed to prepare Information Technology students for professional and industry environments. In this role, contributed to the creation of visual materials supporting event communication and documentation. Through this experience, developed a stronger understanding of event-based visual communication, basic branding processes, and cross-functional collaboration within an academic organization.",
+  pin: [
+    "Designed event mascot",
+    "Designed Instagram promotional posts",
+    "Created visual assets for event promotion",
+    "Assisted in preparing event proposal"
+  ],
+  location: "Indonesia"
+}
 
 export async function main() {
   console.log("Start seeding...");
@@ -226,6 +240,11 @@ export async function main() {
   await prisma.session.deleteMany();
   await prisma.verificationToken.deleteMany();
   await prisma.user.deleteMany();
+  await prisma.organizationExperience.deleteMany();
+
+  // Seed Organization Experience
+  const orgExp = await prisma.organizationExperience.create({ data: organizationExperienceData });
+  console.log(`Created organization experience with id: ${orgExp.id}`);
 
   // Seed Users
   for (const u of userData) {

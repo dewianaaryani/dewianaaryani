@@ -178,3 +178,16 @@ model WorkExperience {
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @updatedAt @map("updated_at")
 }
+
+model OrganizationExperience {
+  id           String    @id @default(cuid())
+  role         String
+  organization String
+  startDate    DateTime
+  endDate      DateTime?
+  description  String?
+  pin          String[]
+  location     String?
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+}
