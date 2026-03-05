@@ -3,7 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google"; // <-- Must be imported
 import { ThemeProvider } from "./provider";
 import { SessionProvider } from "next-auth/react";
-
+import { Analytics } from "@vercel/analytics/next";
 // ...
 // const geistMono = localFont({...});
 // ...
@@ -32,6 +32,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
